@@ -1,0 +1,22 @@
+<div>
+    <div>
+        <h2>Search Customer:</h2><br>
+    </div>
+    <div>
+        <form action="/customer" method="GET">
+            <label for="name">Name:</label>
+            <input type="text" value="<%= searchOptions.name %>" name="name" placeholder="Name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <br>
+    <div>
+        <% customers.forEach(customer => { %>
+            <div class="author-row">
+                <div class="author-name"><%= customer.name %></div>
+                <div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
