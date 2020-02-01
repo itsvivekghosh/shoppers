@@ -1,0 +1,27 @@
+<div>
+        <label for="name">Name: </label>
+        <input type="text" value="<%=seller.sellerName%>" name="name" required placeholder="Name of Seller">
+        <br>
+        <label for="address">Address: </label>
+        <textarea type="text" name="address" required placeholder="Address Of Seller">
+            <%=seller.addressOfSeller%>
+        </textarea>
+        <br>
+
+        <label for="category">Category of Selling:</label>
+        <select name="category" required>
+            <option selected>--Choose Category--</option>
+            <option value="electronics">Electronics</option>
+            <option value="tvAppliances">TV & Appliances</option>
+            <option value="fashion">Fashion</option>
+            <option value="homeFurniture">Home & Furniture</option>
+            <option value="beautyPersonalCare">Beaty & Personal Care</option>
+            <option value="sportsBooksMore">Sports, Books & More</option>
+        </select>
+        <br>
+        <label for="phoneNumber">Phone Number: </label>
+        <input type="number" name="pNumber" value="<%=seller.phoneNumber%>" placeholder="Phone Number"><br>
+        <label for="description">Description: </label>
+        <textarea name="description" placeholder="Description"><%=seller.description%></textarea>
+</div>
+

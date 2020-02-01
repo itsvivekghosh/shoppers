@@ -1,0 +1,14 @@
+<div>
+    <div align="center">
+        <h2>Seller's Name: <%= seller.sellerName %></h2>
+        <h2>Seller's Address: <%= seller.addressOfSeller %></h2>
+        <h2>Seller's Phone Number: <%= seller.phoneNumber %></h2>
+        <h2>Seller's Rating: <%= seller.rating %></h2>
+        <h2>Seller's Category: <%= seller.categoryOfSeller %></h2>
+        <h3>Seller's Description: <%= seller.description %></h3><br>
+        <a href="/seller/<%=seller.id%>/edit">Update Profile</a>
+        <%-include("../partials/deleteForm.ejs", 
+            { url: `/seller/${seller.id}` }
+        )%>
+    </div>
+</div>

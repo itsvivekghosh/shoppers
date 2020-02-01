@@ -3,6 +3,9 @@
         <h2>Search Customer:</h2><br>
     </div>
     <div>
+        <a href="/customer/new">New Customer</a>
+    </div>
+    <div>
         <form action="/customer" method="GET">
             <label for="name">Name:</label>
             <input type="text" value="<%= searchOptions.name %>" name="name" placeholder="Name">
@@ -14,7 +17,13 @@
         <% customers.forEach(customer => { %>
             <div class="author-row">
                 <div class="author-name"><%= customer.name %></div>
+
                 <div>
+                    <a href="/customer/<%=customer.id%>">View</a>
+                    <a href="/customer/<%=customer.id%>/edit">Edit</a>
+                    <%-include("../partials/deleteForm.ejs", 
+                        { url: `/customer/${customer.id}` }
+                    )%>
                 </div>
             </div>
         <% }) %>

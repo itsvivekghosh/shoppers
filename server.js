@@ -23,6 +23,7 @@ app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 //Importing all Imports
 const homeRouter = require("./routes/home");
 const customerRouter = require("./routes/customer");
+const sellerRouter = require("./routes/seller");
 
 //Database Connectivity
 mongoose
@@ -37,5 +38,6 @@ mongoose
 
 app.use("/", homeRouter);
 app.use("/customer", customerRouter);
+app.use("/seller", sellerRouter);
 
 app.listen(process.env.PORT || 3000);

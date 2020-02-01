@@ -1,18 +1,18 @@
 <div>
         <div>
             <label for="name">Name: </label>
-            <input type="text" value="" placeholder="Name" name="name" value="<%customer.name%>"><br>
+            <input type="text" required placeholder="Name"  name="name" value="<%= customer.name %>"><br>
         </div>
         <div>
             <label for="address">Address: </label>
-            <input type="text" value="" placeholder="Address" name="address" value="<%customer.address%>"><br>
+            <input type="text" required placeholder="Address" name="address" value="<%= customer.address %>"><br>
         </div>
         <div>
             <label for="phoneNumber">Phone Number: </label>
-            <input type="number" value="" placeholder="Phone Number" name="phoneNumber" value="<%customer.phoneNumber%>"><br>
+            <input type="number" required placeholder="Phone Number" name="phoneNumber" value="<%= customer.phoneNumber %>"><br>
         </div>
         <div>
             <label for="description">Description: </label>
-            <textarea type="text" value="" placeholder="Description" name="description" value="<%customer.description%>"></textarea><br>
+            <textarea type="text" required placeholder="Description" name="description"><%= customer.description %></textarea><br>
         </div>
 </div>

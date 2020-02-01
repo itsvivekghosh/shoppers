@@ -1,0 +1,7 @@
+<div>
+    <form action="/customer/<%=customer.id%>?_method=PUT" method="POST">
+        <%- include("form_field.ejs") %>
+        <a href="/customer/<%= customer.id %>">Cancel</a>
+        <button type="submit">Update</button>
+    </form>
+</div>

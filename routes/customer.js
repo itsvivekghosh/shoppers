@@ -38,7 +38,7 @@ routes.post("/", async (req, res) => {
   });
   try {
     const newCustomer = await customer.save();
-    res.redirect("/customer");
+    res.redirect(`/customer/${newCustomer.id}`);
   } catch {
     res.render("customer/new_customer", {
       customer: customer,
@@ -47,4 +47,61 @@ routes.post("/", async (req, res) => {
   }
 });
 
+routes.put("/:id", async (req, res) => {
+  let customer;
+  try {
+    customer = await Customer.findById(req.params.id);
+    customer.name = req.body.name;
+    customer.address = req.body.address;
+    customer.phoneNumber = req.body.phoneNumber;
+    customer.description = req.body.description;
+
+    await customer.save();
+    res.redirect(`/customer/${customer.id}`);
+  } catch {
+    if (customer == null) {
+      res.redirect("customer/");
+    } else {
+      res.render("customer/update_customer", {
+        customer: customer,
+        errorMessage: "Error Updating Customer"
+      });
+    }
+  }
+});
+
+routes.get("/:id", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    res.render("customer/show_customer", {
+      customer: customer
+    });
+  } catch {
+    res.redirect("/");
+  }
+});
+
+routes.get("/:id/edit", async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    res.render("customer/update_customer.ejs", {
+      customer: customer
+    });
+  } catch {
+    res.redirect("/");
+  }
+});
+
+routes.delete("/:id", async (req, res) => {
+  let customer;
+
+  try {
+    customer = await Customer.findById(req.params.id);
+    await customer.remove();
+
+    res.redirect("/customer");
+  } catch {
+    res.redirect("/");
+  }
+});
 module.exports = routes;
