@@ -1,0 +1,18 @@
+:root {
+  --book-cover-width: 200px;
+  --book-cover-width-large: 325px;
+  --book-cover-aspect-ratio: 0.75;
+}
+
+.book-cover {
+  width: var(--book-cover-width);
+  height: calc(var(--book-cover-width) / var(--book-cover-aspect-ratio));
+}
+
+.profile-pic {
+  width: 200px;
+  border-radius: 20%;
+}
+img {
+  -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+}

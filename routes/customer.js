@@ -2,6 +2,10 @@ const express = require("express");
 const routes = express.Router();
 const Customer = require("../models/customer");
 
+
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
+
+
 //Rendering Home page with all customer
 routes.get("/", async (req, res) => {
   let searchOptions = {};
@@ -22,7 +26,7 @@ routes.get("/", async (req, res) => {
 });
 
 //Create new Customer
-routes.get("/new", function(req, res) {
+routes.get("/new", function (req, res) {
   res.render("customer/new_customer.ejs", {
     customer: new Customer()
   });
@@ -36,6 +40,10 @@ routes.post("/", async (req, res) => {
     phoneNumber: req.body.phoneNumber,
     description: req.body.description
   });
+
+  saveCover(customer, req.body.customer_profile_image)
+
+
   try {
     const newCustomer = await customer.save();
     res.redirect(`/customer/${newCustomer.id}`);
@@ -104,4 +112,14 @@ routes.delete("/:id", async (req, res) => {
     res.redirect("/");
   }
 });
+
+function saveCover(customer, coverEncoded) {
+  if (coverEncoded == null) return
+  const cover = JSON.parse(coverEncoded)
+  if (cover != null && imageMimeTypes.includes(cover.type)) {
+    customer.coverImage = new Buffer.from(cover.data, 'base64')
+    customer.coverImageType = cover.type
+  }
+}
+
 module.exports = routes;

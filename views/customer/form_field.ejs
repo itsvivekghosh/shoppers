@@ -1,5 +1,9 @@
 <div>
         <div>
+            <label for="profile_picture">Profile Picture:</label>
+            <input type="file" name="customer_profile_image" class="book-cover filepond" value="<%=customer.coverImagePath%>">
+        </div>
+        <div>
             <label for="name">Name: </label>
             <input type="text" required placeholder="Name"  name="name" value="<%= customer.name %>"><br>
         </div>

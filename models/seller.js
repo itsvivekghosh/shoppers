@@ -17,6 +17,14 @@ const sellerSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  coverImage: {
+    type: Buffer,
+    required: true
+  },
+  coverImageType: {
+    type: String,
+    required: true
+  },
   phoneNumber: {
     type: String,
     required: true
@@ -26,5 +34,12 @@ const sellerSchema = new mongoose.Schema({
     required: true
   }
 });
+
+sellerSchema.virtual('coverImagePath').get(function () {
+  if (this.coverImage != null && this.coverImageType != null) {
+    return `data:${this.coverImageType};charset=utf-8;base64,${this.coverImage.toString('base64')}`
+  }
+})
+
 
 module.exports = mongoose.model("Seller", sellerSchema);

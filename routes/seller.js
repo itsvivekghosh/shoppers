@@ -3,6 +3,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
+
 router.get("/", async (req, res) => {
   let searchOptions = {};
 
@@ -21,7 +23,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/new", function(req, res) {
+router.get("/new", function (req, res) {
   res.render("seller/new_seller.ejs", {
     seller: new Seller()
   });
@@ -35,6 +37,8 @@ router.post("/", async (req, res) => {
     phoneNumber: req.body.pNumber,
     description: req.body.description
   });
+
+  saveCover(seller, req.body.seller_profile_image)
 
   try {
     const newSeller = await seller.save();
@@ -62,7 +66,8 @@ router.delete("/:id", async (req, res) => {
     seller = await Seller.findById(req.params.id);
     await seller.remove();
     res.redirect("/seller");
-  } catch {
+  }
+  catch {
     res.redirect("/");
   }
 });
@@ -73,7 +78,8 @@ router.get("/:id/edit", async (req, res) => {
     res.render("seller/update_seller.ejs", {
       seller: seller
     });
-  } catch {
+  }
+  catch {
     res.redirect("/");
   }
 });
@@ -95,7 +101,8 @@ router.put("/:id", async (req, res) => {
   } catch {
     if (seller == null) {
       res.redirect("/");
-    } else {
+    }
+    else {
       res.render("seller/update_seller.ejs", {
         errorMessage: "Error Updating The Seller",
         seller: seller
@@ -103,4 +110,15 @@ router.put("/:id", async (req, res) => {
     }
   }
 });
+
+
+function saveCover(seller, coverEncoded) {
+  if (coverEncoded == null) return
+  const cover = JSON.parse(coverEncoded)
+  if (cover != null && imageMimeTypes.includes(cover.type)) {
+    seller.coverImage = new Buffer.from(cover.data, 'base64')
+    seller.coverImageType = cover.type
+  }
+}
+
 module.exports = router;
