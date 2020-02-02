@@ -1,6 +1,6 @@
 <div>
 
-    <form action="/seller" method="post">
+    <form action="/seller/<%=seller.id%>?_method=PUT" method="post">
         <%-include('../seller/form_fields.ejs')%>
         <a href="/seller">Cancel</a>
         <button type="submit">Update</button>

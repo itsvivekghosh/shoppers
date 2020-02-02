@@ -77,4 +77,30 @@ router.get("/:id/edit", async (req, res) => {
     res.redirect("/");
   }
 });
+
+router.put("/:id", async (req, res) => {
+  let seller;
+
+  try {
+    seller = await Seller.findById(req.params.id);
+    seller.sellerName = req.body.name;
+    seller.addressOfSeller = req.body.address;
+    seller.categoryOfSeller = req.body.category;
+    seller.phoneNumber = req.body.pNumber;
+    seller.description = req.body.description;
+
+    await seller.save();
+
+    res.redirect(`/seller/${seller.id}`);
+  } catch {
+    if (seller == null) {
+      res.redirect("/");
+    } else {
+      res.render("seller/update_seller.ejs", {
+        errorMessage: "Error Updating The Seller",
+        seller: seller
+      });
+    }
+  }
+});
 module.exports = router;

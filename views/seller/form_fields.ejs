@@ -10,13 +10,22 @@
 
         <label for="category">Category of Selling:</label>
         <select name="category" required>
-            <option selected>--Choose Category--</option>
-            <option value="electronics">Electronics</option>
-            <option value="tvAppliances">TV & Appliances</option>
-            <option value="fashion">Fashion</option>
-            <option value="homeFurniture">Home & Furniture</option>
-            <option value="beautyPersonalCare">Beaty & Personal Care</option>
-            <option value="sportsBooksMore">Sports, Books & More</option>
+            <option>--Choose Category--</option>
+            <%
+                var options=[
+                    "Electronics",
+                    "TV & Appliances",
+                    "Fashion",
+                    "Home & Furniture",
+                    "Beauty & Personal Care",
+                    "Sports, Books & More"
+                ];
+            for(var i=0;i < options.length; i++){
+                var selected = ( seller.categoryOfSeller == options[i]) ? "selected": "";  
+            %>
+            <option value="<%=options[i]%>" <%=selected%>><%=options[i]%></option>
+            <%}%>
+            
         </select>
         <br>
         <label for="phoneNumber">Phone Number: </label>
