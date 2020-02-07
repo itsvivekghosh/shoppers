@@ -1,0 +1,7 @@
+<div>
+    <% products.forEach(product => {%>
+    <a href="/product/<%= product.id %>">
+        <img class="book-cover" src="<%= product.coverImagePath %>">
+    </a>
+    <%})%>
+</div>

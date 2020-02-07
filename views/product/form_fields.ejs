@@ -1,0 +1,41 @@
+<div>
+    <div>
+        <input type="file" name="product_image" class="book-cover filepond" src="<%= product.coverImagePath %> ">
+    </div>
+    <div>
+        <label for="nameOfProduct">
+            <legend>Name Of Product:</legend>
+        </label>
+        <input type="text" name="nameOfProduct" required id="nameOfProduct" value="<%= product.nameOfProduct %>"
+            placeholder="Name Of Product">
+    </div>
+    <div>
+        <label for="price">
+            <legend>Price</legend>
+        </label>
+        <input type="text" name="priceOfProduct" id="priceOfProduct" required value="<%= product.priceOfProduct %>"
+            placeholder="Price Of Product">
+    </div>
+    <div>
+        <label for="details">
+            <legend>Description: </legend>
+        </label>
+        <textarea name="description" id="description" required placeholder="Description">
+            <%= product.description %>
+        </textarea>
+    </div>
+    <div>
+        <label for="sellerOfProduct">
+            <legend>Seller: </legend>
+        </label>
+        <select name="sellerOfProduct" id="seller">
+            <% sellers.forEach(seller => { %>
+            <% if (seller.id == product.sellerOfProduct) { %>
+            <option label="<%= seller.sellerName %>" value="<%= seller.id %>" selected>
+                <% } else { %>
+            <option label="<%= seller.sellerName %>" value="<%= seller.id %>">
+                <% } %>
+                <% }) %>
+        </select>
+    </div>
+</div>

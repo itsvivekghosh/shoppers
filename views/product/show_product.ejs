@@ -1,0 +1,15 @@
+<div>
+    <div align="center">
+        <img src="<%=product.coverImagePath%>" class="book-cover"><br>
+        <h2>Name: <%= product.nameOfProduct %></h2>
+        <h2>description: <%= product.description %></h2>
+        <h2>Price <%= product.priceOfProduct %></h2>
+        <h2>Date: <%= product.dateCreated %></h2>
+        <h2>Rating: <%= product.ratingOfProduct %></h2>
+        <h2>Seller: <%= product.sellerOfProduct %></h2>
+        <a href="/product/<%= product.id %>/edit">Edit</a>
+        <%-include("../partials/deleteForm.ejs", 
+            { url: `/product/${product.id}` }
+        )%>
+    </div>
+</div>

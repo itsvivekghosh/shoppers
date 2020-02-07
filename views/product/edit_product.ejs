@@ -1,0 +1,7 @@
+<div>
+    <form action="/product/<%= product.id %>?_method=PUT " method="POST">
+        <%- include("form_fields.ejs") %>
+        <a href="/product">Cancel</a>
+        <button type="submit">Update</button>
+    </form>
+</div>

@@ -10,16 +10,16 @@
     <br>
     <div>
         <% sellers.forEach(seller => { %>
+        <div>
+            <div><%= seller.sellerName %></div>
             <div>
-                <div><%= seller.sellerName %></div>
-                <div>
-                    <a href="/seller/<%=seller.id%>">View</a>
-                    <a href="/seller/<%=seller.id%>/edit">Edit</a>
-                    <%-include("../partials/deleteForm.ejs", 
+                <a href="/seller/<%=seller.id%>">View</a>
+                <a href="/seller/<%=seller.id%>/edit">Edit</a>
+                <%-include("../partials/deleteForm.ejs", 
                         { url: `/seller/${seller.id}` }
                     )%>
-                </div>
             </div>
+        </div>
         <% }) %>
     </div>
 </div>

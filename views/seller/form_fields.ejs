@@ -1,20 +1,20 @@
 <div>
-        <div>
-            <input type="file" name="seller_profile_image" class="book-cover filepond">
-        </div>
-        <label for="name">Name: </label>
-        <input type="text" value="<%=seller.sellerName%>" name="name" required placeholder="Name of Seller">
-        <br>
-        <label for="address">Address: </label>
-        <textarea type="text" name="address" required placeholder="Address Of Seller">
+    <div>
+        <input type="file" name="seller_profile_image" class="book-cover filepond">
+    </div>
+    <label for="name">Name: </label>
+    <input type="text" value="<%=seller.sellerName%>" name="name" required placeholder="Name of Seller">
+    <br>
+    <label for="address">Address: </label>
+    <textarea type="text" name="address" required placeholder="Address Of Seller">
             <%=seller.addressOfSeller%>
         </textarea>
-        <br>
+    <br>
 
-        <label for="category">Category of Selling:</label>
-        <select name="category" required>
-            <option>--Choose Category--</option>
-            <%
+    <label for="category">Category of Selling:</label>
+    <select name="category" required>
+        <option>--Choose Category--</option>
+        <%
                 var options=[
                     "Electronics",
                     "TV & Appliances",
@@ -26,8 +26,8 @@
             for(var i=0;i < options.length; i++){
                 var selected = ( seller.categoryOfSeller == options[i]) ? "selected": "";  
             %>
-            <option value="<%=options[i]%>" <%=selected%>><%=options[i]%></option>
-            <%}%>
+        <option value="<%=options[i]%>" <%= selected %>><%= options[i] %></option>
+        <%}%>
             
         </select>
         <br>
@@ -36,4 +36,3 @@
         <label for="description">Description: </label>
         <textarea name="description" placeholder="Description"><%=seller.description%></textarea>
 </div>
-
